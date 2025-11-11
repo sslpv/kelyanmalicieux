@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz sur Kelyan 🤪</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🎉 QUIZ SUR KELYAN 🎉</h1>
+        <p>Découvre si tu connais vraiment notre légende ! 😂</p>
+        <div class="score-display">Score : <span id="score">0</span>/12 ✨</div>
+      </header>
+
+      <main id="quiz-container">
+        <!-- La question courante sera affichée ici -->
+        <div id="current-question" class="current-question">
+          <!-- Question générée dynamiquement -->
+        </div>
+
+        <div class="progress-bar">
+          <div id="progress" class="progress-fill"></div>
+        </div>
+
+        <div class="question-counter">
+          Question <span id="current-num">1</span> sur
+          <span id="total-num">12</span>
+        </div>
+      </main>
+
+      <div id="final-result" class="final-result hidden">
+        <h2 id="final-message"></h2>
+        <p id="final-score"></p>
+        <button onclick="restartQuiz()" class="restart-btn">
+          🔄 Recommencer
+        </button>
+      </div>
+    </div>
+
+    <!-- Conteneur pour les confettis -->
+    <div id="hearts-container"></div>
+
+    <!-- Conteneur pour la neige de Kelyan -->
+    <div id="kelyan-snow-container"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
