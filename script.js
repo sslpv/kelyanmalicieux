@@ -117,7 +117,7 @@ const resultMessages = {
     message: "Waouh ! Tu es presque aussi génial(e) que Kelyan ! Presque... 😏",
   },
   10: {
-    title: "🎉 EXCELLENT ! Kelyan serait fier !",
+    title: "💩 EXCELLENT ! Kelyan serait fier !",
     message:
       "Tu maîtrises bien l'art de connaître notre légende ! Respect ! 👏",
   },
@@ -444,7 +444,7 @@ function createBackgroundParticles() {
 }
 
 function getRandomEmoji() {
-  const emojis = ["✨", "🌟", "⭐", "💫", "🎉", "🎊", "💖", "💝", "🦄", "🌈"];
+  const emojis = ["✨", "🌟", "⭐", "💫", "💩", "🎊", "💖", "💝", "🦄", "🌈"];
   return emojis[Math.floor(Math.random() * emojis.length)];
 }
 
