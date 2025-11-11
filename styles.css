@@ -373,3 +373,234 @@ header p {
     padding: 20px;
   }
 }
+
+/* Styles pour l'écran d'accueil */
+.welcome-screen {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.welcome-content h2 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.welcome-content p {
+  font-size: 1.3rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.name-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#player-name {
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border: 3px solid #4ecdc4;
+  border-radius: 15px;
+  text-align: center;
+  font-family: "Comic Neue", cursive;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+#player-name:focus {
+  outline: none;
+  border-color: #ff6b9d;
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+  transform: scale(1.05);
+}
+
+#start-quiz-btn {
+  padding: 15px 30px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff6b9d, #4ecdc4);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-family: "Comic Neue", cursive;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#start-quiz-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.name-required {
+  color: #ff4757;
+  font-weight: 600;
+  margin-top: 10px;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Styles pour les boutons finaux */
+.final-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ranking-btn {
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ffd700, #ffab00);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Comic Neue", cursive;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ranking-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles pour l'écran de classement */
+.ranking-screen {
+  padding: 40px 20px;
+}
+
+.ranking-content h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.ranking-list {
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.ranking-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 100px;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  border-left: 5px solid #4ecdc4;
+  transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-item.current-player {
+  background: linear-gradient(45deg, rgba(255, 107, 157, 0.2), rgba(78, 205, 196, 0.2));
+  border-left-color: #ff6b9d;
+  transform: scale(1.02);
+}
+
+.ranking-item .rank {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ranking-item .name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.ranking-item .score {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ff6b9d;
+  text-align: center;
+}
+
+.ranking-item .date {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+.no-ranking {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #666;
+  font-style: italic;
+  padding: 40px 20px;
+}
+
+.ranking-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.new-game-btn {
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #4ecdc4, #44a08d);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Comic Neue", cursive;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.new-game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive pour les nouveaux éléments */
+@media (max-width: 768px) {
+  .name-input-container {
+    max-width: 300px;
+  }
+  
+  .ranking-item {
+    grid-template-columns: 50px 1fr 70px;
+    padding: 12px 15px;
+  }
+  
+  .ranking-item .date {
+    display: none;
+  }
+  
+  .final-buttons, .ranking-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ranking-btn, .new-game-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}

@@ -17,10 +17,23 @@
       <header>
         <h1>💩 QUIZ SUR JELYAN 💩</h1>
         <p>Découvre si tu connais vraiment kelyan au bbl</p>
-        <div class="score-display">Score : <span id="score">0</span>/12 ✨</div>
+        <div class="score-display hidden">Score : <span id="score">0</span>/12 ✨</div>
       </header>
 
-      <main id="quiz-container">
+      <!-- Écran d'accueil avec nom -->
+      <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+          <h2>🎯 Prêt(e) pour le défi ? 🎯</h2>
+          <p>Entre ton nom pour commencer le quiz !</p>
+          <div class="name-input-container">
+            <input type="text" id="player-name" placeholder="Ton nom ici..." maxlength="20" />
+            <button id="start-quiz-btn" onclick="startQuizWithName()">🚀 Commencer !</button>
+          </div>
+          <p class="name-required hidden">⚠️ Tu dois entrer ton nom pour jouer !</p>
+        </div>
+      </div>
+
+      <main id="quiz-container" class="hidden">
         <!-- La question courante sera affichée ici -->
         <div id="current-question" class="current-question">
           <!-- Question générée dynamiquement -->
@@ -39,9 +52,32 @@
       <div id="final-result" class="final-result hidden">
         <h2 id="final-message"></h2>
         <p id="final-score"></p>
-        <button onclick="restartQuiz()" class="restart-btn">
-          🔄 Recommencer
-        </button>
+        <div class="final-buttons">
+          <button onclick="showRanking()" class="ranking-btn">
+            🏆 Voir le Classement
+          </button>
+          <button onclick="restartQuiz()" class="restart-btn">
+            🔄 Recommencer
+          </button>
+        </div>
+      </div>
+
+      <!-- Section Ranking -->
+      <div id="ranking-screen" class="ranking-screen hidden">
+        <div class="ranking-content">
+          <h2>🏆 CLASSEMENT DES LÉGENDES 🏆</h2>
+          <div id="ranking-list" class="ranking-list">
+            <!-- Le classement sera généré ici -->
+          </div>
+          <div class="ranking-buttons">
+            <button onclick="showWelcome()" class="new-game-btn">
+              🆕 Nouveau Joueur
+            </button>
+            <button onclick="restartQuiz()" class="restart-btn">
+              🔄 Rejouer
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

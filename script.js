@@ -1,5 +1,118 @@
 // Quiz sur Kelyan - JavaScript
 
+// Variables globales
+let currentPlayerName = "";
+
+// Gestion du classement avec localStorage
+function getRanking() {
+  const ranking = localStorage.getItem('kelyanQuizRanking');
+  return ranking ? JSON.parse(ranking) : [];
+}
+
+function saveToRanking(name, score) {
+  let ranking = getRanking();
+  
+  // Vérifier si le joueur existe déjà
+  const existingPlayer = ranking.find(player => player.name === name);
+  
+  if (existingPlayer) {
+    // Mettre à jour seulement si le nouveau score est meilleur
+    if (score > existingPlayer.score) {
+      existingPlayer.score = score;
+      existingPlayer.date = new Date().toLocaleDateString();
+    }
+  } else {
+    // Ajouter nouveau joueur
+    ranking.push({
+      name: name,
+      score: score,
+      date: new Date().toLocaleDateString()
+    });
+  }
+  
+  // Trier par score décroissant
+  ranking.sort((a, b) => b.score - a.score);
+  
+  // Garder seulement le top 10
+  ranking = ranking.slice(0, 10);
+  
+  localStorage.setItem('kelyanQuizRanking', JSON.stringify(ranking));
+}
+
+function startQuizWithName() {
+  const nameInput = document.getElementById('player-name');
+  const name = nameInput.value.trim();
+  
+  if (name === '') {
+    document.querySelector('.name-required').classList.remove('hidden');
+    nameInput.focus();
+    return;
+  }
+  
+  currentPlayerName = name;
+  document.querySelector('.name-required').classList.add('hidden');
+  
+  // Masquer l'écran d'accueil et afficher le quiz
+  document.getElementById('welcome-screen').classList.add('hidden');
+  document.getElementById('quiz-container').classList.remove('hidden');
+  document.querySelector('.score-display').classList.remove('hidden');
+  
+  // Commencer le quiz
+  startQuiz();
+}
+
+function startQuiz() {
+  // Initialiser le quiz proprement
+  initQuiz();
+}
+
+function showWelcome() {
+  // Réinitialiser tous les écrans
+  document.getElementById('welcome-screen').classList.remove('hidden');
+  document.getElementById('quiz-container').classList.add('hidden');
+  document.getElementById('final-result').classList.add('hidden');
+  document.getElementById('ranking-screen').classList.add('hidden');
+  document.querySelector('.score-display').classList.add('hidden');
+  
+  // Réinitialiser le champ nom
+  document.getElementById('player-name').value = '';
+  document.querySelector('.name-required').classList.add('hidden');
+}
+
+function showRanking() {
+  document.getElementById('final-result').classList.add('hidden');
+  document.getElementById('ranking-screen').classList.remove('hidden');
+  
+  displayRanking();
+}
+
+function displayRanking() {
+  const ranking = getRanking();
+  const rankingList = document.getElementById('ranking-list');
+  
+  if (ranking.length === 0) {
+    rankingList.innerHTML = '<p class="no-ranking">Aucun score enregistré pour le moment ! 🤷‍♂️</p>';
+    return;
+  }
+  
+  let html = '';
+  ranking.forEach((player, index) => {
+    const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`;
+    const isCurrentPlayer = player.name === currentPlayerName ? 'current-player' : '';
+    
+    html += `
+      <div class="ranking-item ${isCurrentPlayer}">
+        <span class="rank">${medal}</span>
+        <span class="name">${player.name}</span>
+        <span class="score">${player.score}/12</span>
+        <span class="date">${player.date}</span>
+      </div>
+    `;
+  });
+  
+  rankingList.innerHTML = html;
+}
+
 // Données du quiz
 const quizData = [
   {
@@ -326,6 +439,11 @@ function showFinalResult() {
   finalMessage.textContent = result.title;
   finalScore.textContent = `Tu as obtenu ${currentScore}/12 ! ${result.message}`;
 
+  // Enregistrer le score dans le classement
+  if (currentPlayerName) {
+    saveToRanking(currentPlayerName, currentScore);
+  }
+
   finalResult.classList.remove("hidden");
 
   // Animation d'entrée
@@ -342,6 +460,8 @@ function showFinalResult() {
 // Redémarrer le quiz
 function restartQuiz() {
   document.getElementById("final-result").classList.add("hidden");
+  document.getElementById("ranking-screen").classList.add("hidden");
+  document.getElementById("quiz-container").classList.remove("hidden");
   document.getElementById("quiz-container").style.display = "block";
 
   // Faire défiler vers le haut
@@ -351,9 +471,9 @@ function restartQuiz() {
   initQuiz();
 }
 
-// Initialiser le quiz au chargement de la page
+// Initialiser seulement les effets visuels au chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
-  initQuiz();
+  // Le quiz ne s'initialise pas automatiquement - il faut d'abord entrer un nom
   updateScore();
 
   // Lancer la neige de Kelyan en continu ! 😂
@@ -361,6 +481,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Ajouter un effet de particules de fond
   createBackgroundParticles();
+
+  // Focus automatique sur le champ nom
+  document.getElementById('player-name').focus();
+  
+  // Permettre de valider avec Entrée
+  document.getElementById('player-name').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      startQuizWithName();
+    }
+  });
 });
 
 // Créer l'effet de neige de Kelyan
