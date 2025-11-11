@@ -79,11 +79,41 @@ function showWelcome() {
   document.querySelector('.name-required').classList.add('hidden');
 }
 
+// Variable pour mémoriser l'écran précédent
+let previousScreen = 'welcome-screen';
+
 function showRanking() {
+  // Sauvegarder l'écran actuel avant de passer au classement
+  if (!document.getElementById('welcome-screen').classList.contains('hidden')) {
+    previousScreen = 'welcome-screen';
+  } else if (!document.getElementById('quiz-container').classList.contains('hidden')) {
+    previousScreen = 'quiz-container';
+  } else if (!document.getElementById('final-result').classList.contains('hidden')) {
+    previousScreen = 'final-result';
+  }
+  
+  // Masquer tous les autres écrans
+  document.getElementById('welcome-screen').classList.add('hidden');
+  document.getElementById('quiz-container').classList.add('hidden');
   document.getElementById('final-result').classList.add('hidden');
+  
+  // Afficher l'écran de classement
   document.getElementById('ranking-screen').classList.remove('hidden');
   
   displayRanking();
+}
+
+function goBackFromRanking() {
+  // Masquer l'écran de classement
+  document.getElementById('ranking-screen').classList.add('hidden');
+  
+  // Retourner à l'écran précédent
+  document.getElementById(previousScreen).classList.remove('hidden');
+  
+  // Si on retourne au quiz, s'assurer que le score est visible
+  if (previousScreen === 'quiz-container') {
+    document.querySelector('.score-display').classList.remove('hidden');
+  }
 }
 
 function displayRanking() {

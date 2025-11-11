@@ -42,6 +42,34 @@ header {
   padding: 30px 20px;
   text-align: center;
   color: white;
+  position: relative;
+}
+
+.header-top {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+
+.ranking-btn-header {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Comic Neue", cursive;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.ranking-btn-header:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 header h1 {
@@ -579,6 +607,26 @@ header p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+.back-btn {
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Comic Neue", cursive;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #bdc3c7, #95a5a6);
+}
+
 /* Responsive pour les nouveaux éléments */
 @media (max-width: 768px) {
   .name-input-container {
@@ -599,8 +647,19 @@ header p {
     align-items: center;
   }
   
-  .ranking-btn, .new-game-btn {
+  .ranking-btn, .new-game-btn, .back-btn {
     width: 100%;
     max-width: 250px;
+  }
+  
+  .header-top {
+    position: static;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .ranking-btn-header {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }

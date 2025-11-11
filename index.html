@@ -15,6 +15,11 @@
   <body>
     <div class="container">
       <header>
+        <div class="header-top">
+          <button id="ranking-btn-header" class="ranking-btn-header" onclick="showRanking()">
+            🏆 Classement
+          </button>
+        </div>
         <h1>💩 QUIZ SUR JELYAN 💩</h1>
         <p>Découvre si tu connais vraiment kelyan au bbl</p>
         <div class="score-display hidden">Score : <span id="score">0</span>/12 ✨</div>
@@ -70,6 +75,9 @@
             <!-- Le classement sera généré ici -->
           </div>
           <div class="ranking-buttons">
+            <button onclick="goBackFromRanking()" class="back-btn">
+              ⬅️ Retour
+            </button>
             <button onclick="showWelcome()" class="new-game-btn">
               🆕 Nouveau Joueur
             </button>
